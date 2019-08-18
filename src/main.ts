@@ -35,11 +35,11 @@ export class Main {
 		this.bootstrap.host = h;
 	}
 
-	block(block: string | string[]): Block {
+	block(block?: string | string[]): Block {
 		return new Block(this._host, block);
 	}
 
-	account(account: string | string[]): Account {
+	account(account?: string | string[]): Account {
 		return new Account(this._host, account);
 	}
 

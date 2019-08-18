@@ -6,12 +6,9 @@ export class Account extends Api {
 
 	private account: string[];
 
-	constructor(host: string, account: string | string[]) {
+	constructor(host: string, account?: string | string[]) {
 		super(host);
 		this.account = Array.isArray(account) ? account : [account];
-		if (this.account.length === 0) {
-			throw new Error(ENUM.ERROR.INVALID_ACCOUNT);
-		}
 		for (let i in this.account) {
 			if (!util.valid.account(this.account[i])) {
 				throw new Error(ENUM.ERROR.INVALID_ACCOUNT);

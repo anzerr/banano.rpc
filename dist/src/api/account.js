@@ -6,9 +6,6 @@ class Account extends api_1.Api {
     constructor(host, account) {
         super(host);
         this.account = Array.isArray(account) ? account : [account];
-        if (this.account.length === 0) {
-            throw new Error(util_1.ENUM.ERROR.INVALID_ACCOUNT);
-        }
         for (let i in this.account) {
             if (!util_1.util.valid.account(this.account[i])) {
                 throw new Error(util_1.ENUM.ERROR.INVALID_ACCOUNT);

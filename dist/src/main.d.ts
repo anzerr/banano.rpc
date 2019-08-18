@@ -12,6 +12,6 @@ export declare class Main {
     bootstrap: Bootstrap;
     constructor(host: string);
     host: string;
-    block(block: string | string[]): Block;
-    account(account: string | string[]): Account;
+    block(block?: string | string[]): Block;
+    account(account?: string | string[]): Account;
 }

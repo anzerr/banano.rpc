@@ -6,12 +6,9 @@ export class Block extends Api {
 
 	block: string[];
 
-	constructor(host: string, block: string | string[]) {
+	constructor(host: string, block?: string | string[]) {
 		super(host);
 		this.block = Array.isArray(block) ? block : [block];
-		if (this.block.length === 0) {
-			throw new Error(ENUM.ERROR.INVALID_BLOCK);
-		}
 		for (let i in this.block) {
 			if (!util.valid.hash(this.block[i])) {
 				throw new Error(ENUM.ERROR.INVALID_BLOCK);
@@ -39,11 +36,17 @@ export class Block extends Api {
 		});
 	}
 
-	count(): Promise<any> {
-		return this.request({action: 'block_count'});
+	count(option?: {include_cemented?: boolean}): Promise<any> {
+		if (this.block.length !== 0) {
+			return Promise.reject(ENUM.ERROR.INVALID_SIZE);
+		}
+		return this.request({action: 'block_count', ...(option || {})});
 	}
 
 	countType(): Promise<any> {
+		if (this.block.length !== 0) {
+			return Promise.reject(ENUM.ERROR.INVALID_SIZE);
+		}
 		return this.request({action: 'block_count_type'});
 	}
 

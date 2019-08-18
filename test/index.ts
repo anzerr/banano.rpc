@@ -71,7 +71,6 @@ s.create((req, res) => {
 		res.status(404).send(':)');
 	});
 }).then(() => {
-	console.log('started server');
 	let api = new Rpc(`http://localhost:${port}`), account = 'ban_1fundm3d7zritekc8bdt4oto5ut8begz6jnnt7n3tdxzjq3t46aiuse1h7gj';
 
 	return api.account(account).balance().then((res) => {

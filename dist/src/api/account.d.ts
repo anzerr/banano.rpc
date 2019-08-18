@@ -1,7 +1,7 @@
 import { Api } from '../util/api';
 export declare class Account extends Api {
     private account;
-    constructor(host: string, account: string | string[]);
+    constructor(host: string, account?: string | string[]);
     balance(): Promise<{
         balance: number;
         pending: number;
