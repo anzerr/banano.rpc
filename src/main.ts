@@ -5,6 +5,8 @@ import {Bootstrap} from './api/bootstrap';
 import {Confirmation} from './api/confirmation';
 import {Network} from './api/network';
 import {Node} from './api/node';
+import {Frontier} from './api/frontier';
+import {Representatives} from './api/representatives';
 
 export class Main {
 
@@ -14,12 +16,16 @@ export class Main {
 	network: Network;
 	confirmation: Confirmation;
 	bootstrap: Bootstrap;
+	frontier: Frontier;
+	representatives: Representatives;
 
 	constructor(host: string) {
 		this.node = new Node(host);
 		this.network = new Network(host);
 		this.confirmation = new Confirmation(host);
 		this.bootstrap = new Bootstrap(host);
+		this.frontier = new Frontier(host);
+		this.representatives = new Representatives(host);
 		this._host = host;
 	}
 
@@ -33,6 +39,7 @@ export class Main {
 		this.network.host = h;
 		this.confirmation.host = h;
 		this.bootstrap.host = h;
+		this.frontier.host = h;
 	}
 
 	block(block?: string | string[]): Block {

@@ -6,12 +6,16 @@ const bootstrap_1 = require("./api/bootstrap");
 const confirmation_1 = require("./api/confirmation");
 const network_1 = require("./api/network");
 const node_1 = require("./api/node");
+const frontier_1 = require("./api/frontier");
+const representatives_1 = require("./api/representatives");
 class Main {
     constructor(host) {
         this.node = new node_1.Node(host);
         this.network = new network_1.Network(host);
         this.confirmation = new confirmation_1.Confirmation(host);
         this.bootstrap = new bootstrap_1.Bootstrap(host);
+        this.frontier = new frontier_1.Frontier(host);
+        this.representatives = new representatives_1.Representatives(host);
         this._host = host;
     }
     get host() {
@@ -23,6 +27,7 @@ class Main {
         this.network.host = h;
         this.confirmation.host = h;
         this.bootstrap.host = h;
+        this.frontier.host = h;
     }
     block(block) {
         return new block_1.Block(this._host, block);
