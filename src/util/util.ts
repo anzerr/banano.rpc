@@ -34,6 +34,14 @@ class Util {
 				}
 				if (data[i].match(/^[0-9]+$/)) {
 					data[i] = Number(data[i]) || 0;
+					continue;
+				}
+				if (data[i].match(/(?<=\{)\s*[^{]*?(?=[\}])/)) {
+					try {
+						data[i] = JSON.parse(data[i]);
+					} catch (e) {
+						// skip
+					}
 				}
 			} else {
 				if (is.object(data[i])) {
