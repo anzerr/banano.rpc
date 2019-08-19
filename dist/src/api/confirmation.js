@@ -9,7 +9,7 @@ class Confirmation extends api_1.Api {
         return this.request({ action: 'confirmation_history' });
     }
     info(root, option) {
-        return this.request(Object.assign({ root, action: 'confirmation_info' }, (option || {})));
+        return this.request(Object.assign({ root: root, action: 'confirmation_info' }, (option || {})));
     }
     quorum(option) {
         return this.request(Object.assign({ action: 'confirmation_quorum' }, (option || {})));

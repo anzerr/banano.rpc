@@ -19,7 +19,7 @@ export class Network extends Api {
 		return this.request({action: 'peers', ...(option || {})});
 	}
 
-	representatives(option?: {count?: number, sorting?: boolean}): Promise<any> {
+	representatives(option?: {count?: number; sorting?: boolean}): Promise<any> {
 		return this.request({action: 'representatives', ...(option || {})});
 	}
 

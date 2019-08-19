@@ -6,7 +6,7 @@ class Block extends api_1.Api {
     constructor(host, block) {
         super(host);
         this.block = Array.isArray(block) ? block : [block];
-        for (let i in this.block) {
+        for (const i in this.block) {
             if (!util_1.util.valid.hash(this.block[i])) {
                 throw new Error(util_1.ENUM.ERROR.INVALID_BLOCK);
             }

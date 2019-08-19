@@ -9,7 +9,7 @@ export class Block extends Api {
 	constructor(host: string, block?: string | string[]) {
 		super(host);
 		this.block = Array.isArray(block) ? block : [block];
-		for (let i in this.block) {
+		for (const i in this.block) {
 			if (!util.valid.hash(this.block[i])) {
 				throw new Error(ENUM.ERROR.INVALID_BLOCK);
 			}
@@ -50,7 +50,7 @@ export class Block extends Api {
 		return this.request({action: 'block_count_type'});
 	}
 
-	info(option?: {json_block?: boolean, pending?: boolean, source?: boolean, balance?: boolean}): Promise<any> {
+	info(option?: {json_block?: boolean; pending?: boolean; source?: boolean; balance?: boolean}): Promise<any> {
 		if (this.block.length === 0) {
 			return Promise.reject(ENUM.ERROR.INVALID_SIZE);
 		}

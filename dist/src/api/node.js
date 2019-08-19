@@ -4,7 +4,7 @@ const api_1 = require("../util/api");
 class Node extends api_1.Api {
     stats(type = 'counters') {
         return this.request({
-            type,
+            type: type,
             action: 'stats'
         });
     }

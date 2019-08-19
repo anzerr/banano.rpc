@@ -29,7 +29,7 @@ export class Main {
 		this._host = host;
 	}
 
-	get host() {
+	get host(): string {
 		return this._host;
 	}
 

@@ -11,7 +11,7 @@ export class Api {
 		this._host = host;
 	}
 
-	get host() {
+	get host(): string {
 		return this._host;
 	}
 
@@ -19,7 +19,7 @@ export class Api {
 		this._host = h;
 	}
 
-	handle(res) {
+	handle(res): any {
 		if (res.isOkay()) {
 			const data = res.parse();
 			if (is.object(data) && !is.buffer(data)) {
@@ -29,7 +29,7 @@ export class Api {
 		throw new Error('invalid response from rpc');
 	}
 
-	request(payload: any) {
+	request(payload: any): Promise<any> {
 		return new Request(this._host).json(payload).post('/').then((res) => this.handle(res));
 	}
 

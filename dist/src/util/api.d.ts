@@ -3,5 +3,5 @@ export declare class Api {
     constructor(host: string);
     host: string;
     handle(res: any): any;
-    request(payload: any): any;
+    request(payload: any): Promise<any>;
 }

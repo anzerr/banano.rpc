@@ -6,7 +6,7 @@ class Account extends api_1.Api {
     constructor(host, account) {
         super(host);
         this.account = Array.isArray(account) ? account : [account];
-        for (let i in this.account) {
+        for (const i in this.account) {
             if (!util_1.util.valid.account(this.account[i])) {
                 throw new Error(util_1.ENUM.ERROR.INVALID_ACCOUNT);
             }
@@ -77,7 +77,7 @@ class Account extends api_1.Api {
             action: 'accounts_balances',
             account: this.account
         }).then((res) => {
-            for (let i in res.balances) {
+            for (const i in res.balances) {
                 res.balances[i] = { balance: Number(res.balances[i].balance), pending: Number(res.balances[i].pending) };
             }
             return res;

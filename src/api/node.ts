@@ -3,9 +3,9 @@ import {Api} from '../util/api';
 
 export class Node extends Api {
 
-	stats(type: string = 'counters'): Promise<any> {
+	stats(type = 'counters'): Promise<any> {
 		return this.request({
-			type,
+			type: type,
 			action: 'stats'
 		});
 	}

@@ -14,7 +14,7 @@ class Util {
         this.valid = new Valid();
     }
     format(data) {
-        for (let i in data) {
+        for (const i in data) {
             if (is.string(data[i])) {
                 if (data[i] === 'false') {
                     data[i] = false;

@@ -9,14 +9,14 @@ export class Account extends Api {
 	constructor(host: string, account?: string | string[]) {
 		super(host);
 		this.account = Array.isArray(account) ? account : [account];
-		for (let i in this.account) {
+		for (const i in this.account) {
 			if (!util.valid.account(this.account[i])) {
 				throw new Error(ENUM.ERROR.INVALID_ACCOUNT);
 			}
 		}
 	}
 
-	balance(): Promise<{balance: number, pending: number}> {
+	balance(): Promise<{balance: number; pending: number}> {
 		if (this.account.length !== 1) {
 			return Promise.reject(ENUM.ERROR.INVALID_SIZE);
 		}
@@ -36,7 +36,7 @@ export class Account extends Api {
 		});
 	}
 
-	history(option?: {count?: number, raw?: boolean, head?: string, reverse: string, account_filter: string[]}): Promise<any> {
+	history(option?: {count?: number; raw?: boolean; head?: string; reverse: string; account_filter: string[]}): Promise<any> {
 		if (this.account.length !== 1) {
 			return Promise.reject(ENUM.ERROR.INVALID_SIZE);
 		}
@@ -47,7 +47,7 @@ export class Account extends Api {
 		});
 	}
 
-	info(option?: {representative?: boolean, weight?: boolean, pending?: boolean}): Promise<any> {
+	info(option?: {representative?: boolean; weight?: boolean; pending?: boolean}): Promise<any> {
 		if (this.account.length !== 1) {
 			return Promise.reject(ENUM.ERROR.INVALID_SIZE);
 		}
@@ -96,10 +96,10 @@ export class Account extends Api {
 			action: 'accounts_balances',
 			account: this.account
 		}).then((res) => {
-			for (let i in res.balances) {
-				res.balances[i] = {balance: Number(res.balances[i].balance), pending: Number(res.balances[i].pending)}
+			for (const i in res.balances) {
+				res.balances[i] = {balance: Number(res.balances[i].balance), pending: Number(res.balances[i].pending)};
 			}
-			return res
+			return res;
 		});
 	}
 
@@ -113,7 +113,7 @@ export class Account extends Api {
 		});
 	}
 
-	pending(option?: {count?: number, threshold?: string, source?: boolean, include_active?: boolean, include_only_confirmed?: boolean}): Promise<any> {
+	pending(option?: {count?: number; threshold?: string; source?: boolean; include_active?: boolean; include_only_confirmed?: boolean}): Promise<any> {
 		if (this.account.length === 0) {
 			return Promise.reject(ENUM.ERROR.INVALID_SIZE);
 		}
