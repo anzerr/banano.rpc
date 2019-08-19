@@ -1,5 +1,5 @@
 
-import * as is from 'type.util';
+import is from 'type.util';
 
 class Valid {
 

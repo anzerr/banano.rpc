@@ -1,7 +1,7 @@
 
-import * as Request from 'request.libary';
+import Request from 'request.libary';
 import {util} from './util';
-import * as is from 'type.util';
+import is from 'type.util';
 
 export class Api {
 

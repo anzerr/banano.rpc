@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Request = require("request.libary");
+const request_libary_1 = require("request.libary");
 const util_1 = require("./util");
-const is = require("type.util");
+const type_util_1 = require("type.util");
 class Api {
     constructor(host) {
         this._host = host;
@@ -16,14 +16,14 @@ class Api {
     handle(res) {
         if (res.isOkay()) {
             const data = res.parse();
-            if (is.object(data) && !is.buffer(data)) {
+            if (type_util_1.default.object(data) && !type_util_1.default.buffer(data)) {
                 return util_1.util.format(data);
             }
         }
         throw new Error('invalid response from rpc');
     }
     request(payload) {
-        return new Request(this._host).json(payload).post('/').then((res) => this.handle(res));
+        return new request_libary_1.default(this._host).json(payload).post('/').then((res) => this.handle(res));
     }
 }
 exports.Api = Api;

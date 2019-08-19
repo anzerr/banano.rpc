@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const is = require("type.util");
+const type_util_1 = require("type.util");
 class Valid {
     account(account) {
         return account.match(/^ban_[13][0-9a-z]{59}$/) !== null;
@@ -15,7 +15,7 @@ class Util {
     }
     format(data) {
         for (const i in data) {
-            if (is.string(data[i])) {
+            if (type_util_1.default.string(data[i])) {
                 if (data[i] === 'false') {
                     data[i] = false;
                     continue;
@@ -38,7 +38,7 @@ class Util {
                 }
             }
             else {
-                if (is.object(data[i])) {
+                if (type_util_1.default.object(data[i])) {
                     data[i] = this.format(data[i]);
                 }
             }
