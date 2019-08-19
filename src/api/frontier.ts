@@ -7,7 +7,7 @@ export class Frontier extends Api {
 		return this.request({action: 'frontier_count'});
 	}
 
-	get(account: string[], option?: {count?: number}): Promise<any> {
+	get(option?: {account?: string; count?: number}): Promise<any> {
 		return this.request({action: 'frontiers', ...(option || {})});
 	}
 

@@ -5,7 +5,7 @@ class Frontier extends api_1.Api {
     count() {
         return this.request({ action: 'frontier_count' });
     }
-    get(account, option) {
+    get(option) {
         return this.request(Object.assign({ action: 'frontiers' }, (option || {})));
     }
 }

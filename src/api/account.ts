@@ -36,7 +36,7 @@ export class Account extends Api {
 		});
 	}
 
-	history(option?: {count?: number; raw?: boolean; head?: string; reverse: string; account_filter: string[]}): Promise<any> {
+	history(option?: {count?: number; raw?: boolean; head?: string; reverse?: string; account_filter?: string[]}): Promise<any> {
 		if (this.account.length !== 1) {
 			return Promise.reject(ENUM.ERROR.INVALID_SIZE);
 		}

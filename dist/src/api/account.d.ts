@@ -13,8 +13,8 @@ export declare class Account extends Api {
         count?: number;
         raw?: boolean;
         head?: string;
-        reverse: string;
-        account_filter: string[];
+        reverse?: string;
+        account_filter?: string[];
     }): Promise<any>;
     info(option?: {
         representative?: boolean;
