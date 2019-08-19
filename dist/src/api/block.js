@@ -5,7 +5,12 @@ const util_1 = require("../util/util");
 class Block extends api_1.Api {
     constructor(host, block) {
         super(host);
-        this.block = Array.isArray(block) ? block : [block];
+        if (block) {
+            this.block = Array.isArray(block) ? block : [block];
+        }
+        else {
+            this.block = [];
+        }
         for (const i in this.block) {
             if (!util_1.util.valid.hash(this.block[i])) {
                 throw new Error(util_1.ENUM.ERROR.INVALID_BLOCK);

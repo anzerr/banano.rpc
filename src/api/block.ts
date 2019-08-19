@@ -8,7 +8,11 @@ export class Block extends Api {
 
 	constructor(host: string, block?: string | string[]) {
 		super(host);
-		this.block = Array.isArray(block) ? block : [block];
+		if (block) {
+			this.block = Array.isArray(block) ? block : [block];
+		} else {
+			this.block = [];
+		}
 		for (const i in this.block) {
 			if (!util.valid.hash(this.block[i])) {
 				throw new Error(ENUM.ERROR.INVALID_BLOCK);

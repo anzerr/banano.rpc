@@ -8,7 +8,11 @@ export class Account extends Api {
 
 	constructor(host: string, account?: string | string[]) {
 		super(host);
-		this.account = Array.isArray(account) ? account : [account];
+		if (account) {
+			this.account = Array.isArray(account) ? account : [account];
+		} else {
+			this.account = [];
+		}
 		for (const i in this.account) {
 			if (!util.valid.account(this.account[i])) {
 				throw new Error(ENUM.ERROR.INVALID_ACCOUNT);

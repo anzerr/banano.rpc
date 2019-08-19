@@ -3,10 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const type_util_1 = require("type.util");
 class Valid {
     account(account) {
-        return account.match(/^ban_[13][0-9a-z]{59}$/) !== null;
+        return type_util_1.default.string(account) && account.match(/^ban_[13][0-9a-z]{59}$/) !== null;
     }
     hash(hash) {
-        return hash.match(/^[0-9a-zA-Z]{64}$/) !== null;
+        return type_util_1.default.string(hash) && hash.match(/^[0-9a-zA-Z]{64}$/) !== null;
     }
 }
 class Util {
