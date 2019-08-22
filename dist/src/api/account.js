@@ -80,12 +80,7 @@ class Account extends api_1.Api {
         }
         return this.request({
             action: 'accounts_balances',
-            account: this.account
-        }).then((res) => {
-            for (const i in res.balances) {
-                res.balances[i] = { balance: Number(res.balances[i].balance), pending: Number(res.balances[i].pending) };
-            }
-            return res;
+            accounts: this.account
         });
     }
     frontiers() {
@@ -94,14 +89,14 @@ class Account extends api_1.Api {
         }
         return this.request({
             action: 'accounts_frontiers',
-            account: this.account
+            accounts: this.account
         });
     }
     pending(option) {
         if (this.account.length === 0) {
             return Promise.reject(util_1.ENUM.ERROR.INVALID_SIZE);
         }
-        return this.request(Object.assign({ action: 'accounts_pending', account: this.account }, (option || {})));
+        return this.request(Object.assign({ action: 'accounts_pending', accounts: this.account }, (option || {})));
     }
     delegators() {
         if (this.account.length !== 1) {

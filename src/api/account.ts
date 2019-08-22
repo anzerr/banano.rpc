@@ -98,12 +98,7 @@ export class Account extends Api {
 		}
 		return this.request({
 			action: 'accounts_balances',
-			account: this.account
-		}).then((res) => {
-			for (const i in res.balances) {
-				res.balances[i] = {balance: Number(res.balances[i].balance), pending: Number(res.balances[i].pending)};
-			}
-			return res;
+			accounts: this.account
 		});
 	}
 
@@ -113,7 +108,7 @@ export class Account extends Api {
 		}
 		return this.request({
 			action: 'accounts_frontiers',
-			account: this.account
+			accounts: this.account
 		});
 	}
 
@@ -123,7 +118,7 @@ export class Account extends Api {
 		}
 		return this.request({
 			action: 'accounts_pending',
-			account: this.account,
+			accounts: this.account,
 			...(option || {})
 		});
 	}
