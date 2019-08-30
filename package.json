@@ -10,8 +10,8 @@
 		"clean": "find ./src -regex \".*.(js|map|d.ts)\" -type f -delete && rm -Rf ./dist"
 	},
 	"keywords": [],
-	"author": "",
-	"license": "ISC",
+	"author": "anzerr",
+	"license": "MIT",
 	"devDependencies": {
 		"@types/node": "^12.0.4",
 		"eslint-config-typescript": "git+https://git@github.com/anzerr/eslint-config-typescript.git",
@@ -25,5 +25,16 @@
 	},
 	"eslintConfig": {
 		"extends": "eslint-config-typescript"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:anzerr/banano.rpc.git"
+	},
+	"engines": {
+		"node": ">= 0.10.0"
+	},
+	"bugs": {
+		"url": "https://github.com/anzerr/banano.rpc/issues"
+	},
+	"homepage": "https://github.com/anzerr/banano.rpc#readme"
 }
