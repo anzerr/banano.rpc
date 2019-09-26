@@ -1,8 +1,8 @@
 
 ### `Intro`
-![GitHub Actions status | linter](https://github.com/anzerr/ident.icon/workflows/linter/badge.svg)
-![GitHub Actions status | publish](https://github.com/anzerr/ident.icon/workflows/publish/badge.svg)
-![GitHub Actions status | test](https://github.com/anzerr/ident.icon/workflows/test/badge.svg)
+![GitHub Actions status | linter](https://github.com/anzerr/banano.rpc/workflows/linter/badge.svg)
+![GitHub Actions status | publish](https://github.com/anzerr/banano.rpc/workflows/publish/badge.svg)
+![GitHub Actions status | test](https://github.com/anzerr/banano.rpc/workflows/test/badge.svg)
 
 Typescript interface to call the [nano rpc](https://docs.nano.org/commands/rpc-protocol/#block_info)
 
