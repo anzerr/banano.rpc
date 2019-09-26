@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const api_1 = require("../util/api");
 const util_1 = require("../util/util");
 class Account extends api_1.Api {
-    constructor(host, account) {
-        super(host);
+    constructor(host, account, options) {
+        super(host, options);
         if (account) {
             this.account = Array.isArray(account) ? account : [account];
         }

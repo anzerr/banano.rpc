@@ -11,6 +11,7 @@ import {Representatives} from './api/representatives';
 export class Main {
 
 	private _host: string;
+	private _options: {[key: string]: any};
 
 	node: Node;
 	network: Network;
@@ -19,14 +20,15 @@ export class Main {
 	frontier: Frontier;
 	representatives: Representatives;
 
-	constructor(host: string) {
-		this.node = new Node(host);
-		this.network = new Network(host);
-		this.confirmation = new Confirmation(host);
-		this.bootstrap = new Bootstrap(host);
-		this.frontier = new Frontier(host);
-		this.representatives = new Representatives(host);
+	constructor(host: string, options?: {[key: string]: any}) {
+		this.node = new Node(host, options);
+		this.network = new Network(host, options);
+		this.confirmation = new Confirmation(host, options);
+		this.bootstrap = new Bootstrap(host, options);
+		this.frontier = new Frontier(host, options);
+		this.representatives = new Representatives(host, options);
 		this._host = host;
+		this._options = options;
 	}
 
 	get host(): string {
@@ -43,11 +45,11 @@ export class Main {
 	}
 
 	block(block?: string | string[]): Block {
-		return new Block(this._host, block);
+		return new Block(this._host, block, this._options);
 	}
 
 	account(account?: string | string[]): Account {
-		return new Account(this._host, account);
+		return new Account(this._host, account, this._options);
 	}
 
 }

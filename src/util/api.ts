@@ -6,9 +6,11 @@ import is from 'type.util';
 export class Api {
 
 	private _host: string;
+	private _options: {[key: string]: any};
 
-	constructor(host: string) {
+	constructor(host: string, options?: {[key: string]: any}) {
 		this._host = host;
+		this._options = options;
 	}
 
 	get host(): string {
@@ -23,7 +25,7 @@ export class Api {
 		if (res.isOkay()) {
 			const data = res.parse();
 			if (is.object(data) && !is.buffer(data)) {
-				return util.format(data);
+				return util.format(data, this._options);
 			}
 		}
 		throw new Error('invalid response from rpc');

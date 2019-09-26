@@ -1,17 +1,9 @@
 
 import is from 'type.util';
+import {Valid} from './valid';
+import ENUM from './enum';
 
-class Valid {
-
-	account(account: string): boolean {
-		return is.string(account) && account.match(/^ban_[13][0-9a-z]{59}$/) !== null;
-	}
-
-	hash(hash: string): boolean {
-		return is.string(hash) && hash.match(/^[0-9a-zA-Z]{64}$/) !== null;
-	}
-
-}
+declare const BigInt: any // eslint-disable-line
 
 class Util {
 
@@ -21,7 +13,7 @@ class Util {
 		this.valid = new Valid();
 	}
 
-	format(data): any {
+	format(data, options: any = {}): any {
 		for (const i in data) {
 			if (is.string(data[i])) {
 				if (data[i] === 'false') {
@@ -33,7 +25,19 @@ class Util {
 					continue;
 				}
 				if (data[i].match(/^[0-9]+$/)) {
-					data[i] = Number(data[i]) || 0;
+					if (options.number === 'raw') {
+						continue;
+					}
+					data[`${i}_raw`] = data[i];
+					if (options.number === 'bigInt') {
+						data[i] = BigInt(data[i]) || 0; // eslint-disable-line
+						continue;
+					}
+					if (is.function(options.number)) {
+						data[i] = options.number(data[i]);
+						continue;
+					}
+					data[i] = parseInt(data[i], 10) || 0;
 					continue;
 				}
 				if (data[i].match(/(?<=\{)\s*[^{]*?(?=[\}])/)) {
@@ -42,10 +46,13 @@ class Util {
 					} catch (e) {
 						// skip
 					}
+					if (is.object(data[i])) {
+						data[i] = this.format(data[i], options);
+					}
 				}
 			} else {
 				if (is.object(data[i])) {
-					data[i] = this.format(data[i]);
+					data[i] = this.format(data[i], options);
 				}
 			}
 		}
@@ -55,10 +62,4 @@ class Util {
 }
 
 export const util = new Util();
-export const ENUM = {
-	ERROR: {
-		INVALID_BLOCK: 'Invalid block format',
-		INVALID_SIZE: 'Wrong account/block array size give as param',
-		INVALID_ACCOUNT: 'Invalid account format',
-	}
-};
+export {ENUM};

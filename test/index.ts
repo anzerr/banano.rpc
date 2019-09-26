@@ -6,6 +6,8 @@ import {Server} from 'http.server';
 
 const port = Math.floor(3670 + (Math.random() * 3670)), s = new Server(port);
 
+declare const BigInt: any // eslint-disable-line
+
 s.create((req, res) => {
 	return req.data().then((data) => {
 		if (data.action === 'account_balance' && util.valid.account(data.account)) {
@@ -72,6 +74,10 @@ s.create((req, res) => {
 	}).catch((err) => {
 		assert.equal(err.toString(), 'Error: Invalid account format');
 	}).then(() => {
+		return new Rpc(`http://localhost:${port}`, {number: 'bigInt'}).account(account).history();
+	}).then((res) => {
+		assert.equal(res.history[0].amount, BigInt('80000000000000000000000000000000000')); // eslint-disable-line
+		assert.equal(res.history[0].amount_raw, '80000000000000000000000000000000000');
 		return api.account(account).history();
 	}).then((res) => {
 		assert.equal(res.history[0].local_timestamp, 1551532723);

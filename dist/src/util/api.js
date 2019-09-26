@@ -4,8 +4,9 @@ const request_libary_1 = require("request.libary");
 const util_1 = require("./util");
 const type_util_1 = require("type.util");
 class Api {
-    constructor(host) {
+    constructor(host, options) {
         this._host = host;
+        this._options = options;
     }
     get host() {
         return this._host;
@@ -17,7 +18,7 @@ class Api {
         if (res.isOkay()) {
             const data = res.parse();
             if (type_util_1.default.object(data) && !type_util_1.default.buffer(data)) {
-                return util_1.util.format(data);
+                return util_1.util.format(data, this._options);
             }
         }
         throw new Error('invalid response from rpc');

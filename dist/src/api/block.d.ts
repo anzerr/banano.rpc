@@ -1,7 +1,9 @@
 import { Api } from '../util/api';
 export declare class Block extends Api {
     block: string[];
-    constructor(host: string, block?: string | string[]);
+    constructor(host: string, block?: string | string[], options?: {
+        [key: string]: any;
+    });
     account(): Promise<any>;
     confirm(): Promise<any>;
     count(option?: {

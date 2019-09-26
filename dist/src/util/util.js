@@ -1,19 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const type_util_1 = require("type.util");
-class Valid {
-    account(account) {
-        return type_util_1.default.string(account) && account.match(/^ban_[13][0-9a-z]{59}$/) !== null;
-    }
-    hash(hash) {
-        return type_util_1.default.string(hash) && hash.match(/^[0-9a-zA-Z]{64}$/) !== null;
-    }
-}
+const valid_1 = require("./valid");
+const enum_1 = require("./enum");
+exports.ENUM = enum_1.default;
 class Util {
     constructor() {
-        this.valid = new Valid();
+        this.valid = new valid_1.Valid();
     }
-    format(data) {
+    format(data, options = {}) {
         for (const i in data) {
             if (type_util_1.default.string(data[i])) {
                 if (data[i] === 'false') {
@@ -25,7 +20,19 @@ class Util {
                     continue;
                 }
                 if (data[i].match(/^[0-9]+$/)) {
-                    data[i] = Number(data[i]) || 0;
+                    if (options.number === 'raw') {
+                        continue;
+                    }
+                    data[`${i}_raw`] = data[i];
+                    if (options.number === 'bigInt') {
+                        data[i] = BigInt(data[i]) || 0; // eslint-disable-line
+                        continue;
+                    }
+                    if (type_util_1.default.function(options.number)) {
+                        data[i] = options.number(data[i]);
+                        continue;
+                    }
+                    data[i] = parseInt(data[i], 10) || 0;
                     continue;
                 }
                 if (data[i].match(/(?<=\{)\s*[^{]*?(?=[\}])/)) {
@@ -35,11 +42,14 @@ class Util {
                     catch (e) {
                         // skip
                     }
+                    if (type_util_1.default.object(data[i])) {
+                        data[i] = this.format(data[i], options);
+                    }
                 }
             }
             else {
                 if (type_util_1.default.object(data[i])) {
-                    data[i] = this.format(data[i]);
+                    data[i] = this.format(data[i], options);
                 }
             }
         }
@@ -47,11 +57,4 @@ class Util {
     }
 }
 exports.util = new Util();
-exports.ENUM = {
-    ERROR: {
-        INVALID_BLOCK: 'Invalid block format',
-        INVALID_SIZE: 'Wrong account/block array size give as param',
-        INVALID_ACCOUNT: 'Invalid account format',
-    }
-};
 //# sourceMappingURL=util.js.map

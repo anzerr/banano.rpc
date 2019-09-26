@@ -6,8 +6,8 @@ export class Account extends Api {
 
 	private account: string[];
 
-	constructor(host: string, account?: string | string[]) {
-		super(host);
+	constructor(host: string, account?: string | string[], options?: {[key: string]: any}) {
+		super(host, options);
 		if (account) {
 			this.account = Array.isArray(account) ? account : [account];
 		} else {

@@ -6,8 +6,8 @@ export class Block extends Api {
 
 	block: string[];
 
-	constructor(host: string, block?: string | string[]) {
-		super(host);
+	constructor(host: string, block?: string | string[], options?: {[key: string]: any}) {
+		super(host, options);
 		if (block) {
 			this.block = Array.isArray(block) ? block : [block];
 		} else {

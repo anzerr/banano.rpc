@@ -9,14 +9,15 @@ const node_1 = require("./api/node");
 const frontier_1 = require("./api/frontier");
 const representatives_1 = require("./api/representatives");
 class Main {
-    constructor(host) {
-        this.node = new node_1.Node(host);
-        this.network = new network_1.Network(host);
-        this.confirmation = new confirmation_1.Confirmation(host);
-        this.bootstrap = new bootstrap_1.Bootstrap(host);
-        this.frontier = new frontier_1.Frontier(host);
-        this.representatives = new representatives_1.Representatives(host);
+    constructor(host, options) {
+        this.node = new node_1.Node(host, options);
+        this.network = new network_1.Network(host, options);
+        this.confirmation = new confirmation_1.Confirmation(host, options);
+        this.bootstrap = new bootstrap_1.Bootstrap(host, options);
+        this.frontier = new frontier_1.Frontier(host, options);
+        this.representatives = new representatives_1.Representatives(host, options);
         this._host = host;
+        this._options = options;
     }
     get host() {
         return this._host;
@@ -30,10 +31,10 @@ class Main {
         this.frontier.host = h;
     }
     block(block) {
-        return new block_1.Block(this._host, block);
+        return new block_1.Block(this._host, block, this._options);
     }
     account(account) {
-        return new account_1.Account(this._host, account);
+        return new account_1.Account(this._host, account, this._options);
     }
 }
 exports.Main = Main;
