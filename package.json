@@ -1,6 +1,6 @@
 {
 	"name": "banano.rpc",
-	"version": "1.0.13",
+	"version": "1.0.14",
 	"description": "Typescript interface to call the nano rpc",
 	"keywords": [
 		"banano",
