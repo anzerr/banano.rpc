@@ -4,7 +4,8 @@ export declare class Api {
     constructor(host: string, options?: {
         [key: string]: any;
     });
-    host: string;
+    get host(): string;
+    set host(h: string);
     handle(res: any): any;
     request(payload: any): Promise<any>;
 }

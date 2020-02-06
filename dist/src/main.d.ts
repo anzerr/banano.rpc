@@ -18,7 +18,8 @@ export declare class Main {
     constructor(host: string, options?: {
         [key: string]: any;
     });
-    host: string;
+    get host(): string;
+    set host(h: string);
     block(block?: string | string[]): Block;
     account(account?: string | string[]): Account;
 }
