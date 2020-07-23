@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Frontier = void 0;
 const api_1 = require("../util/api");
 class Frontier extends api_1.Api {
     count() {

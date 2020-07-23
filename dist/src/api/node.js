@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Node = void 0;
 const api_1 = require("../util/api");
 class Node extends api_1.Api {
     stats(type = 'counters') {

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Api = void 0;
 const request_libary_1 = require("request.libary");
 const util_1 = require("./util");
 const type_util_1 = require("type.util");

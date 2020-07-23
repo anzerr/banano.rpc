@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Valid = void 0;
 const type_util_1 = require("type.util");
 class Valid {
     account(account) {

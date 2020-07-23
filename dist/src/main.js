@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Main = void 0;
 const account_1 = require("./api/account");
 const block_1 = require("./api/block");
 const bootstrap_1 = require("./api/bootstrap");
